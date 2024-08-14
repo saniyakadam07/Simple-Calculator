@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Ride Share</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .ride-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .ride-form h2 {
+            margin-top: 0;
+        }
+        .ride-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .ride-form input[type="text"], .ride-form input[type="date"], .ride-form input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .ride-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .ride-form button:hover {
+            background-color: #45a049;
+        }
+        .rides-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .ride-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .ride-item:last-child {
+            border-bottom: none;
+        }
+        .ride-item p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Student Ride Share</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Find a Ride</a>
+        <a href="#">Offer a Ride</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <div class="ride-form">
+            <h2>Offer a Ride</h2>
+            <form action="#" method="POST">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="pickup">Pick-Up Location:</label>
+                <input type="text" id="pickup" name="pickup" required>
+
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="rides-list">
+            <h2>Available Rides</h2>
+            <div class="ride-item">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Pick-Up Location:</strong> Campus Gate</p>
+                <p><strong>Destination:</strong> Railway Station</p>
+                <p><strong>Date:</strong> August 14, 2024</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+            </div>
+            <div class="ride-item">
+                <p><strong>Name:</strong> Jane Smith</p>
+                <p><strong>Pick-Up Location:</strong> Library</p>
+                <p><strong>Destination:</strong> City Center</p>
+                <p><strong>Date:</strong> August 14, 2024</p>
+                <p><strong>Time:</strong> 11:00 AM</p>
+            </div>
+            <!-- More ride items can be added here -->
+        </div>
+    </div>
+
+</body>
+</html>
