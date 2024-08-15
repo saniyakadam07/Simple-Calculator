@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     listItem.textContent = `From ${ride.startLocation} to ${ride.endLocation} at ${new Date(ride.departureTime).toLocaleString()}`;
                     rideList.appendChild(listItem);
                 });
-            });
+            })
+            .catch(error => console.error('Error loading rides:', error));
     }
 
     registerForm.addEventListener('submit', (event) => {
@@ -26,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
-        }).then(response => response.text()).then(message => {
+        })
+        .then(response => response.text())
+        .then(message => {
             alert(message);
             registerForm.reset();
-        }).catch(error => alert('Registration failed: ' + error.message));
+        })
+        .catch(error => alert('Registration failed: ' + error.message));
     });
 
     loginForm.addEventListener('submit', (event) => {
@@ -40,13 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
-        }).then(response => response.json()).then(data => {
-            token = data.token;
-            localStorage.setItem('token', token);
-            alert('Login successful');
-            loginForm.reset();
-            loadRides();
-        }).catch(error => alert('Login failed: ' + error.message));
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                token = data.token;
+                localStorage.setItem('token', token);
+                alert('Login successful');
+                loginForm.reset();
+                loadRides();
+            } else {
+                alert('Login failed');
+            }
+        })
+        .catch(error => alert('Login failed: ' + error.message));
     });
 
     rideForm.addEventListener('submit', (event) => {
@@ -62,10 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ startLocation, endLocation, departureTime })
-        }).then(response => response.json()).then(() => {
+        })
+        .then(response => response.json())
+        .then(() => {
             loadRides();
             rideForm.reset();
-        }).catch(error => alert('Failed to offer ride: ' + error.message));
+        })
+        .catch(error => alert('Failed to offer ride: ' + error.message));
     });
 
     // Load rides on initial page load
