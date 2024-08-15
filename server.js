@@ -17,7 +17,7 @@ app.use(express.static('public'));
 mongoose.connect('mongodb://localhost/student-auto-share', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
+}).catch(err => console.error('MongoDB connection error:', err));
 
 // Define MongoDB Schemas
 const UserSchema = new mongoose.Schema({
@@ -29,7 +29,7 @@ const RideSchema = new mongoose.Schema({
     startLocation: String,
     endLocation: String,
     departureTime: Date,
-    driver: { type: String } // store username of driver
+    driver: String // store username of driver
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -39,9 +39,9 @@ const Ride = mongoose.model('Ride', RideSchema);
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401);
+    if (token == null) return res.status(401).send('Token required');
     jwt.verify(token, 'secret_key', (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.status(403).send('Invalid token');
         req.user = user;
         next();
     });
