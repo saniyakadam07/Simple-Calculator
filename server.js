@@ -8,15 +8,18 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// Connect to MongoDB
 mongoose.connect('mongodb://localhost/student-auto-share', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
+// Define MongoDB Schemas
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true }
@@ -26,13 +29,13 @@ const RideSchema = new mongoose.Schema({
     startLocation: String,
     endLocation: String,
     departureTime: Date,
-    driver: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    driver: { type: String } // store username of driver
 });
 
 const User = mongoose.model('User', UserSchema);
 const Ride = mongoose.model('Ride', RideSchema);
 
-// Middleware to check authentication
+// Middleware for authentication
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -44,25 +47,27 @@ function authenticateToken(req, res, next) {
     });
 }
 
-// User registration
+// Routes
+
+// Register a new user
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword });
     try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ username, password: hashedPassword });
         await user.save();
-        res.status(201).send('User created');
-    } catch {
-        res.status(400).send('User already exists');
+        res.status(201).send('User registered');
+    } catch (err) {
+        res.status(400).send('Error registering user: ' + err.message);
     }
 });
 
-// User login
+// Login user
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (user && await bcrypt.compare(password, user.password)) {
-        const token = jwt.sign({ username: user.username }, 'secret_key');
+        const token = jwt.sign({ username: user.username }, 'secret_key', { expiresIn: '1h' });
         res.json({ token });
     } else {
         res.status(400).send('Invalid credentials');
@@ -80,17 +85,22 @@ app.post('/api/rides', authenticateToken, async (req, res) => {
     try {
         await ride.save();
         res.status(201).json(ride);
-    } catch {
-        res.status(400).send('Failed to create ride');
+    } catch (err) {
+        res.status(400).send('Error creating ride: ' + err.message);
     }
 });
 
 // Get all rides
 app.get('/api/rides', async (req, res) => {
-    const rides = await Ride.find().populate('driver');
-    res.json(rides);
+    try {
+        const rides = await Ride.find();
+        res.json(rides);
+    } catch (err) {
+        res.status(500).send('Error fetching rides: ' + err.message);
+    }
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
