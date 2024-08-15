@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const loginForm = document.getElementById('login-form');
     const rideForm = document.getElementById('ride-form');
-    let token = '';
+    let token = localStorage.getItem('token') || '';
 
     function loadRides() {
         fetch('http://localhost:3000/api/rides')
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(response => response.text()).then(message => {
             alert(message);
             registerForm.reset();
-        });
+        }).catch(error => alert('Registration failed: ' + error.message));
     });
 
     loginForm.addEventListener('submit', (event) => {
@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ username, password })
         }).then(response => response.json()).then(data => {
             token = data.token;
+            localStorage.setItem('token', token);
             alert('Login successful');
             loginForm.reset();
             loadRides();
-        }).catch(() => alert('Login failed'));
+        }).catch(error => alert('Login failed: ' + error.message));
     });
 
     rideForm.addEventListener('submit', (event) => {
@@ -64,6 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(response => response.json()).then(() => {
             loadRides();
             rideForm.reset();
-        }).catch(() => alert('Failed to offer ride'));
+        }).catch(error => alert('Failed to offer ride: ' + error.message));
     });
+
+    // Load rides on initial page load
+    loadRides();
 });
