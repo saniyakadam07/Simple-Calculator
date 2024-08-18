@@ -15,31 +15,9 @@ mongoose.connect('mongodb://localhost/auto-share', {
     useUnifiedTopology: true,
 });
 
-// Ride schema and model
-const rideSchema = new mongoose.Schema({
-    description: String,
-});
-const Ride = mongoose.model('Ride', rideSchema);
-
-// API Endpoints
-app.get('/rides', async (req, res) => {
-    try {
-        const rides = await Ride.find();
-        res.json(rides);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.post('/rides', async (req, res) => {
-    try {
-        const newRide = new Ride(req.body);
-        await newRide.save();
-        res.json(newRide);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
+// Routes
+const rideRoutes = require('./routes/rides');
+app.use('/rides', rideRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
