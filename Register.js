@@ -6,7 +6,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would handle user registration
+        // Placeholder for actual registration logic
         alert('Registration successful!');
     };
 
