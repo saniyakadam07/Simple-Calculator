@@ -3,60 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Auto Share</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>AutoShare</title>
+    <link rel="stylesheet" href="%PUBLIC_URL%/index.css">
 </head>
 <body>
-    <header>
-        <h1>Student Auto Share</h1>
-        <nav>
-            <a href="#register">Register</a>
-            <a href="#login">Login</a>
-            <a href="#find-ride">Find a Ride</a>
-            <a href="#offer-ride">Offer a Ride</a>
-        </nav>
-    </header>
-    <main>
-        <section id="register">
-            <h2>Register</h2>
-            <form id="register-form">
-                <label for="register-username">Username:</label>
-                <input type="text" id="register-username" required>
-                <label for="register-password">Password:</label>
-                <input type="password" id="register-password" required>
-                <button type="submit">Register</button>
-            </form>
-        </section>
-        <section id="login">
-            <h2>Login</h2>
-            <form id="login-form">
-                <label for="login-username">Username:</label>
-                <input type="text" id="login-username" required>
-                <label for="login-password">Password:</label>
-                <input type="password" id="login-password" required>
-                <button type="submit">Login</button>
-            </form>
-        </section>
-        <section id="find-ride">
-            <h2>Find a Ride</h2>
-            <ul id="ride-list"></ul>
-        </section>
-        <section id="offer-ride">
-            <h2>Offer a Ride</h2>
-            <form id="ride-form">
-                <label for="startLocation">Start Location:</label>
-                <input type="text" id="startLocation" required>
-                <label for="endLocation">End Location:</label>
-                <input type="text" id="endLocation" required>
-                <label for="departureTime">Departure Time:</label>
-                <input type="datetime-local" id="departureTime" required>
-                <button type="submit">Offer Ride</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Student Auto Share</p>
-    </footer>
-    <script src="app.js"></script>
+    <div id="root"></div>
 </body>
 </html>
