@@ -1,12 +1,74 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoShare</title>
-    <link rel="stylesheet" href="%PUBLIC_URL%/index.css">
+    <title>Railway Lost and Found</title>
 </head>
 <body>
-    <div id="root"></div>
+    <h1>Lost and Found Railway Properties</h1>
+    
+    <h2>Report a Lost Item</h2>
+    <form id="lostItemForm">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br>
+        <label for="dateLost">Date Lost:</label>
+        <input type="date" id="dateLost" name="dateLost" required>
+        <br>
+        <label for="contactInfo">Contact Info:</label>
+        <input type="text" id="contactInfo" name="contactInfo" required>
+        <br>
+        <button type="submit">Report Lost Item</button>
+    </form>
+
+    <h2>Found Items</h2>
+    <ul id="itemsList"></ul>
+
+    <script>
+        const form = document.getElementById('lostItemForm');
+        const itemsList = document.getElementById('itemsList');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                description: formData.get('description'),
+                dateLost: formData.get('dateLost'),
+                contactInfo: formData.get('contactInfo'),
+            };
+            
+            await fetch('http://localhost:5000/api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            
+            form.reset();
+            loadItems();
+        });
+
+        async function loadItems() {
+            const response = await fetch('http://localhost:5000/api/items');
+            const items = await response.json();
+            itemsList.innerHTML = items.map(item => `
+                <li>
+                    <strong>${item.name}</strong><br>
+                    Description: ${item.description}<br>
+                    Date Lost: ${new Date(item.dateLost).toLocaleDateString()}<br>
+                    Contact Info: ${item.contactInfo}
+                </li>
+            `).join('');
+        }
+
+        loadItems();
+    </script>
 </body>
 </html>
