@@ -6,58 +6,81 @@
     <title>Railway Lost and Found</title>
     <style>
         body {
-            background: linear-gradient(135deg, #a2c2e4, #f5f7fa);
-            /* Creates a diagonal gradient from #a2c2e4 to #f5f7fa */
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: 'Arial', sans-serif;
             color: #333;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            height: 100vh;
         }
 
-        h1 {
-            margin-bottom: 20px;
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        h2 {
+            margin-top: 20px;
+            padding-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 1px solid #ddd;
         }
 
         form {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         label {
-            display: block;
             margin-top: 10px;
             font-weight: bold;
+            color: #34495e;
         }
 
-        input[type="text"],
-        textarea,
-        input[type="date"] {
+        input[type="text"], textarea, input[type="date"] {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             margin-top: 5px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         button {
-            margin-top: 10px;
-            padding: 10px 20px;
+            margin-top: 15px;
+            padding: 12px;
             border: none;
-            border-radius: 4px;
-            background-color: #007bff;
+            border-radius: 6px;
+            background-color: #3498db;
             color: white;
-            font-size: 16px;
+            font-size: 1em;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #2980b9;
         }
 
         ul {
@@ -66,32 +89,39 @@
         }
 
         li {
-            background: rgba(255, 255, 255, 0.9);
+            background: #f9f9f9;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 6px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1>Lost and Found Railway Properties</h1>
         
         <h2>Report a Lost Item</h2>
         <form id="lostItemForm">
             <label for="name">Item Name:</label>
             <input type="text" id="name" name="name" required>
-            <br>
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
-            <br>
             <label for="dateLost">Date Lost:</label>
             <input type="date" id="dateLost" name="dateLost" required>
-            <br>
             <label for="contactInfo">Contact Info:</label>
             <input type="text" id="contactInfo" name="contactInfo" required>
-            <br>
             <button type="submit">Report Lost Item</button>
         </form>
 
