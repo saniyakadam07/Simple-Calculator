@@ -1,41 +1,32 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-app.use(cors());
+const port = process.env.PORT || 5000;
+
+// Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/railway_lost_found', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const ItemSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  dateLost: Date,
-  contactInfo: String,
-});
-
-const Item = mongoose.model('Item', ItemSchema);
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Routes
-app.post('/api/items', async (req, res) => {
-  const { name, description, dateLost, contactInfo } = req.body;
-  const newItem = new Item({ name, description, dateLost, contactInfo });
-  await newItem.save();
-  res.status(201).json(newItem);
-});
+const streamRoutes = require('./routes/streamRoutes');
+const careerRoutes = require('./routes/careerRoutes');
+const blogRoutes = require('./routes/blogRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
-app.get('/api/items', async (req, res) => {
-  const items = await Item.find();
-  res.status(200).json(items);
-});
+app.use('/api/streams', streamRoutes);
+app.use('/api/careers', careerRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/api/contact', contactRoutes);
 
-app.listen(5000, () => {
-  console.log('Server is running on port 5000');
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
