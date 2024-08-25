@@ -3,172 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Railway Lost and Found</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #e0eafc, #cfdef3);
-            font-family: 'Arial', sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 800px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        h1, h2 {
-            color: #2c3e50;
-            margin: 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
-        }
-
-        h2 {
-            margin-top: 20px;
-            padding-bottom: 15px;
-            font-size: 1.5em;
-            border-bottom: 1px solid #ddd;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #34495e;
-        }
-
-        input[type="text"], textarea, input[type="date"] {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            background-color: #3498db;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            background: #f9f9f9;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                width: 100%;
-                padding: 10px;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>Career Guidance - Home</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Lost and Found Railway Properties</h1>
-        
-        <h2>Report a Lost Item</h2>
-        <form id="lostItemForm">
-            <label for="name">Item Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
-            <label for="dateLost">Date Lost:</label>
-            <input type="date" id="dateLost" name="dateLost" required>
-            <label for="contactInfo">Contact Info:</label>
-            <input type="text" id="contactInfo" name="contactInfo" required>
-            <button type="submit">Report Lost Item</button>
-        </form>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CareerGuide</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stream.html">Streams</a></li>
+                <li><a href="career.html">Careers</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <section class="hero">
+            <h1>Discover Your Path</h1>
+            <p>Explore careers and educational opportunities tailored to your interests and skills.</p>
+            <input type="text" placeholder="Search for careers or streams...">
+        </section>
+    </header>
 
-        <h2>Found Items</h2>
-        <ul id="itemsList"></ul>
-    </div>
+    <main>
+        <section class="streams">
+            <h2>Explore Different Academic Streams</h2>
+            <div class="stream-cards">
+                <div class="card">
+                    <h3>Science</h3>
+                    <p>Discover careers in Medicine, Engineering, and Research.</p>
+                    <a href="stream.html#science">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Arts</h3>
+                    <p>Explore opportunities in Fine Arts, Literature, and History.</p>
+                    <a href="stream.html#arts">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Commerce</h3>
+                    <p>Find out about careers in Business, Finance, and Marketing.</p>
+                    <a href="stream.html#commerce">Learn More</a>
+                </div>
+            </div>
+        </section>
 
-    <script>
-        const form = document.getElementById('lostItemForm');
-        const itemsList = document.getElementById('itemsList');
+        <section class="featured-careers">
+            <h2>Top Career Choices</h2>
+            <div class="career-cards">
+                <div class="card">
+                    <h3>Software Developer</h3>
+                    <p>Build and maintain software applications.</p>
+                    <a href="career.html#software-developer">View Details</a>
+                </div>
+                <div class="card">
+                    <h3>Doctor</h3>
+                    <p>Provide medical care and treatment.</p>
+                    <a href="career.html#doctor">View Details</a>
+                </div>
+                <div class="card">
+                    <h3>Graphic Designer</h3>
+                    <p>Create visual content to communicate ideas.</p>
+                    <a href="career.html#graphic-designer">View Details</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                description: formData.get('description'),
-                dateLost: formData.get('dateLost'),
-                contactInfo: formData.get('contactInfo'),
-            };
-            
-            await fetch('http://localhost:5000/api/items', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            
-            form.reset();
-            loadItems();
-        });
+    <footer>
+        <p>&copy; 2024 CareerGuide. All rights reserved.</p>
+        <div class="social-media">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">TW</a>
+            <a href="#" class="social-icon">LI</a>
+        </div>
+    </footer>
 
-        async function loadItems() {
-            const response = await fetch('http://localhost:5000/api/items');
-            const items = await response.json();
-            itemsList.innerHTML = items.map(item => `
-                <li>
-                    <strong>${item.name}</strong><br>
-                    Description: ${item.description}<br>
-                    Date Lost: ${new Date(item.dateLost).toLocaleDateString()}<br>
-                    Contact Info: ${item.contactInfo}
-                </li>
-            `).join('');
-        }
-
-        loadItems();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
