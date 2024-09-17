@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Spot Details - ParkEasy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">ParkEasy</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">For Space Owners</a></li>
+                <li><a href="#">For Renters</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="spot-details">
+        <h2>Spot ID: 12345</h2>
+        <p>Location: Downtown</p>
+        <p>Price: $10/hour</p>
+        <p>Details: Covered, CCTV, 2x4m</p>
+        <form>
+            <label for="time-slot">Select Time Slot:</label>
+            <select id="time-slot" name="time-slot">
+                <option value="hourly">Hourly</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+            </select>
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ParkEasy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
