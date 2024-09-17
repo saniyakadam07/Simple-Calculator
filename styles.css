@@ -10,7 +10,7 @@
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(images/banner.png);
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(images/urban-cityscape.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -109,4 +109,47 @@ nav img {
 .hero-btn:hover {
     border-color: #f44336;
     background: #f44336;
+}
+
+/* Features Section */
+.features {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    width: 30%;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 1rem;
+    text-align: center;
+}
+
+.feature-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.feature-item p {
+    color: #555;
 }
