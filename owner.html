@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parking Details</title>
-    <link rel="stylesheet" href="style.css"> <!-- Ensure your style.css file is in the correct path -->
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +13,6 @@
 </head>
 
 <body>
-    <!-- Header and Navigation -->
     <section class="sub-header5">
         <nav>
             <a href="index.html"><img src="images/logo.png" width="100" height="100" alt="ParkEasy Logo"></a>
@@ -27,82 +24,75 @@
                 </ul>
             </div>
         </nav>
-        <h1>Enter your parking details</h1>
+        <h1>Enter Your Parking Details</h1>
     </section>
 
-    <!-- Owner Details Form -->
     <div class="container">
-        
         <form id="owner-details-form" action="save_owner.php" method="POST">
-            <!-- Owner Info -->
+            <h4>Owner Information</h4>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" required aria-label="Owner's Name">
             </div>
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" class="form-control" id="age" name="age" required>
+                <input type="number" class="form-control" id="age" name="age" required aria-label="Owner's Age">
             </div>
             <div class="form-group">
                 <label for="contact">Contact No.</label>
-                <input type="tel" class="form-control" id="contact" name="contact" required>
+                <input type="tel" class="form-control" id="contact" name="contact" required aria-label="Owner's Contact Number">
             </div>
 
-            <!-- Parking Details -->
             <h4>Parking Space Details</h4>
             <div class="form-group">
                 <label for="parking_no">Parking No.</label>
-                <input type="text" class="form-control" id="parking_no" name="parking_no" required>
+                <input type="text" class="form-control" id="parking_no" name="parking_no" required aria-label="Parking Number">
             </div>
             <div class="form-group">
                 <label for="area">Area</label>
-                <input type="text" class="form-control" id="area" name="area" required>
+                <input type="text" class="form-control" id="area" name="area" required aria-label="Parking Area">
             </div>
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" required>
+                <input type="text" class="form-control" id="city" name="city" required aria-label="City">
             </div>
             <div class="form-group">
                 <label for="state">State</label>
-                <input type="text" class="form-control" id="state" name="state" required>
+                <input type="text" class="form-control" id="state" name="state" required aria-label="State">
             </div>
             <div class="form-group">
                 <label for="charges">Parking Charges (Per Hour)</label>
-                <input type="number" class="form-control" id="charges" name="charges" required>
+                <input type="number" class="form-control" id="charges" name="charges" required aria-label="Parking Charges">
             </div>
             
-            <!-- Start and End Time -->
             <div class="form-group">
                 <label for="start_time">Parking Start Time</label>
-                <input type="text" class="form-control" id="start_time" name="start_time" required>
+                <input type="text" class="form-control" id="start_time" name="start_time" required aria-label="Start Time">
             </div>
             <div class="form-group">
                 <label for="end_time">Parking End Time</label>
-                <input type="text" class="form-control" id="end_time" name="end_time" required>
+                <input type="text" class="form-control" id="end_time" name="end_time" required aria-label="End Time">
             </div>
 
-            <!-- Date of Availability -->
             <div class="form-group">
                 <label for="availability_date">Date of Availability</label>
-                <input type="text" class="form-control" id="availability_date" name="availability_date" required>
+                <input type="text" class="form-control" id="availability_date" name="availability_date" required aria-label="Availability Date">
             </div>
-            
-            <!-- Additional Features -->
+
             <h4>Additional Features</h4>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="cctv" name="features[]" value="CCTV">
+                <input type="checkbox" class="form-check-input" id="cctv" name="features[]" value="CCTV" aria-label="CCTV Feature">
                 <label for="cctv" class="form-check-label">CCTV</label>
             </div>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="watchman" name="features[]" value="Watchman">
+                <input type="checkbox" class="form-check-input" id="watchman" name="features[]" value="Watchman" aria-label="Watchman Feature">
                 <label for="watchman" class="form-check-label">Watchman</label>
             </div>
             <div class="form-group">
                 <label for="note">Note for Seekers</label>
-                <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                <textarea class="form-control" id="note" name="note" rows="3" aria-label="Note for Seekers"></textarea>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -114,7 +104,6 @@
         flatpickr("#end_time", { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true });
     </script>
 
-    <!-- Footer Section -->
     <section class="footer">
         <h4>About Us</h4>
         <p>At ParkEasy, we connect parking space owners with people in need of convenient, affordable parking...</p>
@@ -125,8 +114,5 @@
             <i class="fa fa-linkedin"></i>
         </div>
     </section>
-
 </body>
 </html>
-
-
