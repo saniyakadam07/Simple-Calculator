@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -15,11 +14,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get form data
-$name = $_POST['name'];
-$email = $_POST['email'];
+// Get and sanitize form data
+$name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+$email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
-$user_type = $_POST['user_type'];
+$user_type = filter_var(trim($_POST['user_type']), FILTER_SANITIZE_STRING);
 
 // Check if the email already exists
 $sql = "SELECT * FROM users WHERE email = ?";
