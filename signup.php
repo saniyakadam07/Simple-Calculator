@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -17,10 +15,17 @@ if ($conn->connect_error) {
 }
 
 // Get form data
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 $user_type = $_POST['user_type'];
+
+// Validate inputs
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['error'] = "Invalid email format";
+    header("Location: signup.html");
+    exit();
+}
 
 // Check if the email already exists
 $sql = "SELECT * FROM users WHERE email = ?";
@@ -30,9 +35,8 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    // User already exists
     $_SESSION['error'] = "User already exists";
-    header("Location: login.html"); // Redirect to login page
+    header("Location: signup.html");
     exit();
 }
 
@@ -42,7 +46,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $name, $email, $password, $user_type);
 
 if ($stmt->execute()) {
-    // Redirect based on user type
     if ($user_type == 'owner') {
         header("Location: owner.html");
     } else {
