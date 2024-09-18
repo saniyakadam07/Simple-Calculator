@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seeker Details</title>
     <link rel="stylesheet" href="style.css"> <!-- Ensure your style.css file is in the correct path -->
@@ -29,51 +29,51 @@
         <h1>Search for Parking</h1>
     </section>
 
-    <!-- Seeker Search Form -->
-    <div class="container">
-        
+    <!-- Main Content -->
+    <main class="container">
         <form id="seeker-search-form" action="search_parking.php" method="POST">
             <!-- Seeker Info -->
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" required aria-required="true">
             </div>
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" class="form-control" id="age" name="age" required>
+                <input type="number" class="form-control" id="age" name="age" required aria-required="true">
             </div>
             <div class="form-group">
                 <label for="contact">Contact No.</label>
-                <input type="tel" class="form-control" id="contact" name="contact" required>
+                <input type="tel" class="form-control" id="contact" name="contact" required aria-required="true" pattern="[0-9]{10}">
+                <small>Format: 1234567890</small>
             </div>
             <div class="form-group">
                 <label for="vehicle_model">Vehicle Model</label>
-                <input type="text" class="form-control" id="vehicle_model" name="vehicle_model" required>
+                <input type="text" class="form-control" id="vehicle_model" name="vehicle_model" required aria-required="true">
             </div>
 
             <!-- Search Criteria -->
             <h4>Search Criteria</h4>
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" required>
+                <input type="text" class="form-control" id="city" name="city" required aria-required="true">
             </div>
             <div class="form-group">
                 <label for="search_date">Date</label>
-                <input type="text" class="form-control" id="search_date" name="search_date" required>
+                <input type="text" class="form-control" id="search_date" name="search_date" required aria-required="true">
             </div>
             <div class="form-group">
                 <label for="search_start_time">Start Time</label>
-                <input type="text" class="form-control" id="search_start_time" name="search_start_time" required>
+                <input type="text" class="form-control" id="search_start_time" name="search_start_time" required aria-required="true">
             </div>
             <div class="form-group">
                 <label for="search_end_time">End Time</label>
-                <input type="text" class="form-control" id="search_end_time" name="search_end_time" required>
+                <input type="text" class="form-control" id="search_end_time" name="search_end_time" required aria-required="true">
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
-    </div>
+    </main>
 
     <script>
         // Initialize date and time pickers
@@ -96,4 +96,3 @@
 
 </body>
 </html>
-
