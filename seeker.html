@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker Details</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ensure your style.css file is in the correct path -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header and Navigation -->
+    <section class="sub-header6">
+        <nav>
+            <a href="index.html"><img src="images/logo.png" width="100" height="100" alt="ParkEasy Logo"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h1>Search for Parking</h1>
+    </section>
+
+    <!-- Seeker Search Form -->
+    <div class="container">
+        
+        <form id="seeker-search-form" action="search_parking.php" method="POST">
+            <!-- Seeker Info -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact No.</label>
+                <input type="tel" class="form-control" id="contact" name="contact" required>
+            </div>
+            <div class="form-group">
+                <label for="vehicle_model">Vehicle Model</label>
+                <input type="text" class="form-control" id="vehicle_model" name="vehicle_model" required>
+            </div>
+
+            <!-- Search Criteria -->
+            <h4>Search Criteria</h4>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="search_date">Date</label>
+                <input type="text" class="form-control" id="search_date" name="search_date" required>
+            </div>
+            <div class="form-group">
+                <label for="search_start_time">Start Time</label>
+                <input type="text" class="form-control" id="search_start_time" name="search_start_time" required>
+            </div>
+            <div class="form-group">
+                <label for="search_end_time">End Time</label>
+                <input type="text" class="form-control" id="search_end_time" name="search_end_time" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+    <script>
+        // Initialize date and time pickers
+        flatpickr("#search_date", { enableTime: false, dateFormat: "Y-m-d" });
+        flatpickr("#search_start_time", { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true });
+        flatpickr("#search_end_time", { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true });
+    </script>
+
+    <!-- Footer Section -->
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>At ParkEasy, we connect parking space owners with people in need of convenient, affordable parking...</p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+    </section>
+
+</body>
+</html>
+
