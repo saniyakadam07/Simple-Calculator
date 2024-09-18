@@ -1,5 +1,3 @@
-
-
 <?php
 // Database configuration
 $servername = "localhost"; // Change to your database server
@@ -15,20 +13,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Collect form data
-$name = $_POST['name'];
-$age = $_POST['age'];
-$contact = $_POST['contact'];
-$parking_no = $_POST['parking_no'];
-$area = $_POST['area'];
-$city = $_POST['city'];
-$state = $_POST['state'];
-$charges = $_POST['charges'];
-$start_time = $_POST['start_time'];
-$end_time = $_POST['end_time'];
-$availability_date = $_POST['availability_date'];
+// Collect and sanitize form data
+$name = $conn->real_escape_string(trim($_POST['name']));
+$age = (int)$_POST['age']; // Cast to integer for safety
+$contact = $conn->real_escape_string(trim($_POST['contact']));
+$parking_no = $conn->real_escape_string(trim($_POST['parking_no']));
+$area = $conn->real_escape_string(trim($_POST['area']));
+$city = $conn->real_escape_string(trim($_POST['city']));
+$state = $conn->real_escape_string(trim($_POST['state']));
+$charges = (float)$_POST['charges']; // Cast to float for monetary values
+$start_time = $conn->real_escape_string(trim($_POST['start_time']));
+$end_time = $conn->real_escape_string(trim($_POST['end_time']));
+$availability_date = $conn->real_escape_string(trim($_POST['availability_date']));
 $features = isset($_POST['features']) ? implode(', ', $_POST['features']) : '';
-$note = $_POST['note'];
+$note = $conn->real_escape_string(trim($_POST['note']));
 
 // Prepare and bind
 $stmt = $conn->prepare("INSERT INTO parking_spaces (name, age, contact, parking_no, area, city, state, charges, start_time, end_time, availability_date, features, note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -38,11 +36,12 @@ $stmt->bind_param("sissssssssss", $name, $age, $contact, $parking_no, $area, $ci
 if ($stmt->execute()) {
     echo "Parking details saved successfully.";
 } else {
-    echo "Error: " . $stmt->error;
+    // Log the error for debugging instead of showing to user
+    error_log("Error: " . $stmt->error);
+    echo "An error occurred while saving your details. Please try again.";
 }
 
 // Close connections
 $stmt->close();
 $conn->close();
 ?>
-
