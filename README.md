@@ -11,7 +11,7 @@ HTML: Structure and layout of the calculator.
 CSS: Styling the calculator interface.
 JavaScript: Functionality for calculations and user interactions.
 Live Demo
-You can view a live version of the calculator here. (Replace with your live demo link if available)
+You can view a live version of the calculator here.
 
 Installation
 To run the project locally:
